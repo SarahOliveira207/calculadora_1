@@ -62,30 +62,41 @@ namespace WindowsFormsApp1
            
         }
 
-        private void btIgual_Click(object sender, EventArgs e)
+                private void ButIgual_Click(object sender, EventArgs e)
         {
+            string erro = "Erro";
             double num1, num2, resultado = 0;
-            num1 = (double)numOper1.Value; //transforma o número para double
-            num2 = (double)numOper2.Value;
+            num1= (double)NumOper1.Value;
+            num2= (double)NumOper2.Value;
 
-            if (labOper.Text == btSoma.Text)
+            if(LblOper. Text == Btsoma.Text) 
                 resultado = num1 + num2;
-            else if (labOper.Text == btSub.Text)
+            else if (LblOper. Text == Btsubt.Text) 
                 resultado = num1 - num2;
-            else if (labOper.Text == btDiv.Text)
-            {
-
-                if (numOper2.Text == "0")
-                {
-                    labResultado.Text = "Operação impossível";
-                }
-                else
-                    resultado = num1 / num2;
-            }
-            else
+            else if (LblOper.Text == Btmult.Text)
                 resultado = num1 * num2;
+            else
+            {
+                if (NumOper2.Text != "0")
+                    resultado = num1 / num2;
+                else
+                    LbResultado.Text = erro;
+                return;
+            }
+            LbResultado.Text = resultado.ToString();
+        }
 
-            labResultado.Text = resultado.ToString();
+        private void BtSeguir_Click(object sender, EventArgs e)
+        {
+            NumOper1.Text = LbResultado.Text;
+        }
+
+        private void BtLimpar_Click(object sender, EventArgs e)
+        {
+            NumOper1.Value = 0;
+            NumOper2.Value = 0;
+           LbResultado.Text = "0";
+           
         }
     }
 }
